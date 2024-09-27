@@ -3,6 +3,7 @@ package com.prova.blog.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,16 @@ public class PostagemService{
                        .filter(r -> r.equals(_receita))
                        .findFirst().orElse(null);
     }
+
+    public List<Postagem> getByAutor(String autor) {
+    return postagens.stream()
+        .filter(postagem -> postagem.getAutor() != null && 
+                            postagem.getAutor().contains(autor))
+        .collect(Collectors.toList());
+}
+
+
+
 
     public Boolean update(Postagem postagem) {
         Postagem _postagem = this.find(postagem.getId()); 

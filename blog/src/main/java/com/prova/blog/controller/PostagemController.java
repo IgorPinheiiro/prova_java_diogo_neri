@@ -2,10 +2,12 @@ package com.prova.blog.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -52,6 +54,13 @@ public class PostagemController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping(params = "autor")
+    public ResponseEntity<List<Postagem>> getByAutor(@RequestParam String autor) {
+        List<Postagem> postagens = postagemService.getByAutor(autor);
+        return ResponseEntity.ok(postagens);
+    }
+    
 
      @PutMapping("/postagens")
     public ResponseEntity<Postagem> update(@RequestBody Postagem postagem){
