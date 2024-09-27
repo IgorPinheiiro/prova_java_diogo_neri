@@ -11,9 +11,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.prova.blog.model.Postagem;
 import com.prova.blog.service.PostagemService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -49,8 +52,23 @@ public class PostagemController {
         }
         return ResponseEntity.notFound().build();
     }
-    
 
+    //  @PutMapping
+    // public ResponseEntity<Postagem> update(@RequestBody Postagem postagem){
+    //     if (postagemService.update(postagem)){
+    //         return ResponseEntity.ok(postagem);
+    //     }
+    //     return ResponseEntity.notFound().build();
+    // }
+
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Postagem> delete(@PathVariable("id") Long id){
+        if (postagemService.delete(id)){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }    
 
   
 
