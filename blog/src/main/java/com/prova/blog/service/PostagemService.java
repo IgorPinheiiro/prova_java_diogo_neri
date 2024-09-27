@@ -61,27 +61,32 @@ public class PostagemService{
                        .findFirst().orElse(null);
     }
 
-    // public Boolean update(Postagem postagem){
-    //     //Receita _receita = this.getById(receita.getId());
-    //     Postagem _receita = this.get(postagem);
-    //     if (_receita != null){
-    //         if (postagem.getTitulo() != null 
-    //             && postagem.getTitulo().size() > 0){
-    //             //Sobrescreve os valores atuais
-    //             _receita.setTitulo(null);(postagem.getTitulo());
-    //             //Adiciona sem remover
-    //             //_receita.getIngredientes().addAll(receita.getIngredientes());
-    //         }
-    //         if (!receitaParam.getNome().isEmpty()){
-    //             _receita.setNome(receitaParam.getNome());
-    //         }
-    //         if (!receitaParam.getInstrucoes().isEmpty()){
-    //             _receita.setInstrucoes(receitaParam.getInstrucoes());
-    //         }
-    //         return true;
-    //     }
-    //     return false;        
-    // }
+    public Boolean update(Postagem postagem) {
+        Postagem _postagem = this.find(postagem.getId()); 
+        if (_postagem != null) {
+            
+            if (postagem.getTitulo() != null) {
+                _postagem.setTitulo(postagem.getTitulo());
+            }
+            
+            if (postagem.getConteudo() != null && !postagem.getConteudo().isEmpty()) {
+                _postagem.setConteudo(postagem.getConteudo());
+            }
+            
+            if (postagem.getAutor() != null && !postagem.getAutor().isEmpty()) {
+                _postagem.setAutor(postagem.getAutor());
+            }
+            
+            if (postagem.getDataPublicacao() != null) {
+                _postagem.setDataPublicacao(postagem.getDataPublicacao());
+            }
+            
+    
+            return true; 
+        }
+        return false; 
+    }
+    
 
 
 

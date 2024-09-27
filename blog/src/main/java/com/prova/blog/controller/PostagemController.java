@@ -53,13 +53,13 @@ public class PostagemController {
         return ResponseEntity.notFound().build();
     }
 
-    //  @PutMapping
-    // public ResponseEntity<Postagem> update(@RequestBody Postagem postagem){
-    //     if (postagemService.update(postagem)){
-    //         return ResponseEntity.ok(postagem);
-    //     }
-    //     return ResponseEntity.notFound().build();
-    // }
+     @PutMapping("/postagens")
+    public ResponseEntity<Postagem> update(@RequestBody Postagem postagem){
+        if (postagemService.update(postagem)){
+            return ResponseEntity.ok(postagem);
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     
     @DeleteMapping("/{id}")
